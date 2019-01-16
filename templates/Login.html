@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="../static/style-log.css">
+</head>
+<body>
+	<div class="wrapper">
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+{% for message in messages %}
+
+<p>{{ message }}</p>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+	<div class="container">
+		<h1>Iniciar sesión</h1>
+		<form action="/verificar" method="POST">
+			<input type="text" id="user" name="user" required="">
+			<input type="password" id="password" name="password" >
+			<input type="submit" name="" value="Ingresar">
+			</form>
+	</div>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+</body>
+</html>

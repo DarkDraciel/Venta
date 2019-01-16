@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href="bootstrap.min.css" rel="stylesheet">
+  <link href="../static/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="../static/style-log.css">
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+{% for message in messages %}
+
+<p>{{ message }}</p>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+	<header id="header">
+		 <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Bienvenido</a></h1>
+      </div>
+      <nav id="nav-menu-container">
+      	<ul class="nav-menu">
+          <li><a href="/usuario" class="menu-active">Usuario</a></li>
+          <li><a href="/producto">Productos</a>
+          	<ul>
+                <li><a href="/producto" id="registrarP">Registrar</a></li>
+                 <li><a href="/pag_res">Resurtir</a></li>
+             </ul>
+          </li>
+         <li><a href="/corte">Corte de caja general</a></li>
+        </ul>
+       </nav>
+      </div>
+	</header>
+
+		<div class="wrapper">
+		<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+      </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="../../static/style.css" rel="../stylesheet">
+   <link rel="stylesheet" href="../../static/style-log.css">
+</head>
+<body>
+	<div class="wrapper">
+		<center>
+	<form action="/regPro" method="POST" role="form" >
+
+		<div class="form-group">
+				
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Codigo de producto: </label>
+					<div class="col-sm-2"><input type="text" id="codigo" name="codigo" value="" class="form-control"></div>
+					</div>
+					<div>
+						<label>Nombre: </label>
+					<div><input type="text" id="nombre" name="nombre" value="" class="form-control"></div>
+					</div>
+					<div>
+						<label>Unidad: </label>
+					<div>
+						<select name="unidad">
+  							<option value="gramos">Kg</option>
+							<option value="litros">Pieza</option>	
+						</select>
+					</div>
+					</div>
+					
+						<div>
+						<label>Categoria: </label>
+					<div>	<select name="categoria">
+  							<option value="papel">Papel</option>
+							<option value="comestibles">Comestibles</option>
+							<option value="lch">LHC</option>
+							<option value="mascotas">Mascotas</option>
+							<option value="hcp">HCP</option>
+							
+						</select></div>
+					</div>
+	
+			
+					<div>
+						<label>Minima unidad de producto: </label>
+					<div><input type="number" id="minimo" name="minimo" value="" class="form-control"></div>
+					</div>
+								
+			
+					<div><input type="submit" name="" value="Registrar" style="" ></div>
+
+			
+
+		</div>
+		
+	</form>
+	</center>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+      </div>
+
+</body>
+</html>

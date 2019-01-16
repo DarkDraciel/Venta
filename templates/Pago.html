@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Pago</title>
+	<link href="./static/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="../static/style-log.css">
+</head>
+<body>
+	<div class="wrapper">
+	<form action="/venta">
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+{% for message in messages %}
+
+<h1>
+		Su total a pagar es: {{ message}}
+	</h1>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+	<a href="/venta">
+		<button type="">OK</button>
+	</a>
+
+	</form>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+      </div>
+</body>
+</html>

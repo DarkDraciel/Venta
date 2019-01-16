@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="../../static/style.css" rel="../stylesheet">
+   <link rel="stylesheet" href="../../static/style-log.css">
+</head>
+<body>
+	<div class="wrapper">
+	{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+{% for message in messages %}
+
+<p> {{contact.0}} ,{{ message }}</p>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+	<form action="/regUsu" method="POST" >
+		<table>
+			<tbody>
+				<tr>
+					<td>Usuario: </td>
+					<td><input type="text" id="user" name="user" value=""></td>
+				</tr>
+
+				<tr>
+					<td>Contraseña: </td>
+					<td><input type="text" id="password" name="password" value=""></td>
+				</tr>
+
+				<tr>
+					<td>Rol: </td>
+					<td>
+						<select name="rol">
+  							<option value="Caja">Caja</option>
+							<option value="Admin">Admin</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" name="" value="Registrar"></td>
+
+				</tr>
+
+
+			{% for contact in contact %}
+				<tr>
+					<td>{{ contact.0 }}</td>
+					<td>{{ contact.1 }}</td>
+					<td>{{ contact.2 }}</td>
+					<td>{{ contact.3 }}</td>
+					<td>
+						<a href="/baja/{{ contact.0 }}">Dar de baja</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</form>
+<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+      </div>
+</body>
+</html>

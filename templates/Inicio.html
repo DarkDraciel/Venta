@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Caja</title>
+	<link href="../static/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="../static/style-log.css">
+</head>
+<body>
+<div class="wrapper">
+	<form action="/articulo" method="POST">
+	
+	<p>{{ session['uno'] }}</p>
+
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+{% for message in messages %}
+
+<p>Fecha: {{ message }}</p>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+	<table>
+	
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Cantidad</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a href="/cortexCaja" ><input type="button" name="" value="Corte"></a> 
+				</td>
+			</tr>
+
+			<tr>
+				<td><input type="text" id="codigo" name="codigo" value=""></td>
+				<td><input type="number" id="cantidad" name="cantidad" value=""></td>
+			
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" name="" value="Agregar Artículo">
+				</td>
+				<td>
+					<a href="/pago" ><input type="button" name="" value="Pagar"></a> 
+				</td>
+			</tr>
+
+			{% for contact in contact %}
+		<tr>
+			<td>{{ contact.0 }}</td>
+			<td>{{ contact.1 }}</td>
+			<td>{{ contact.2 }}</td>
+			<td>{{ contact.3 }}</td>
+			<td>{{ contact.4 }}</td>
+			<td>{{ contact.5 }}</td>
+			
+		</tr>
+		{% endfor %}
+
+		</tbody>
+	</table>
+	</form>
+<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+</body>
+</html>

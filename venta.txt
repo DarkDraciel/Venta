@@ -1,0 +1,168 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: venta
+-- ------------------------------------------------------
+-- Server version	5.7.17-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `producto`
+--
+
+DROP TABLE IF EXISTS `producto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `producto` (
+  `codigo_pro` varchar(15) NOT NULL,
+  `nombre_pro` varchar(50) NOT NULL,
+  `unidad_pro` varchar(6) NOT NULL,
+  `precio_pro` int(11) NOT NULL,
+  `categoria_pro` varchar(30) NOT NULL,
+  `minimo_pro` int(11) NOT NULL,
+  PRIMARY KEY (`codigo_pro`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producto`
+--
+
+LOCK TABLES `producto` WRITE;
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES ('1','Sabritas','gramos',10,'Papas',10),('2','Canelitas','gramos',12,'Galletas',10),('3','Polvorones','gramos',11,'Galletas',10);
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `renglon_venta`
+--
+
+DROP TABLE IF EXISTS `renglon_venta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `renglon_venta` (
+  `id_reg` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo_pro` varchar(15) NOT NULL,
+  `id_ven` int(11) NOT NULL,
+  `cantidad_pro` int(11) NOT NULL,
+  `subtotal_pro` double NOT NULL,
+  `status_ven` bit(1) NOT NULL,
+  PRIMARY KEY (`id_reg`),
+  KEY `codigo_pro` (`codigo_pro`),
+  KEY `id_ven` (`id_ven`),
+  CONSTRAINT `renglon_venta_ibfk_1` FOREIGN KEY (`codigo_pro`) REFERENCES `producto` (`codigo_pro`) ON UPDATE CASCADE,
+  CONSTRAINT `renglon_venta_ibfk_2` FOREIGN KEY (`id_ven`) REFERENCES `venta` (`id_ven`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `renglon_venta`
+--
+
+LOCK TABLES `renglon_venta` WRITE;
+/*!40000 ALTER TABLE `renglon_venta` DISABLE KEYS */;
+INSERT INTO `renglon_venta` VALUES (1,'1',6,12,1.01010101010101e23,''),(2,'1',6,12,1.01010101010101e23,''),(3,'2',6,1,12,''),(4,'2',6,10,1.2121212121212121e19,''),(5,'2',6,10,1.2121212121212121e19,''),(6,'2',6,10,1.2121212121212121e19,''),(7,'2',6,10,1.2121212121212121e19,''),(8,'2',6,10,1.2121212121212121e19,''),(9,'2',6,10,1.2121212121212121e19,''),(10,'1',6,10,1.01010101010101e19,''),(11,'1',6,10,10,''),(12,'1',6,5,10,''),(13,'1',6,5,5555555555,''),(14,'1',6,5,50,''),(15,'1',6,12,120,''),(16,'1',6,12,120,''),(17,'1',6,12,120,''),(18,'2',6,7,84,''),(19,'1',7,12,120,''),(20,'2',7,2,24,''),(21,'2',7,2,24,''),(22,'2',7,2,24,''),(23,'2',9,2,24,''),(24,'1',9,5,50,''),(25,'2',11,3,36,''),(26,'1',14,2,20,'');
+/*!40000 ALTER TABLE `renglon_venta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `resurtir`
+--
+
+DROP TABLE IF EXISTS `resurtir`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `resurtir` (
+  `id_res` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo_pro` varchar(50) NOT NULL,
+  `fecha_res` date NOT NULL,
+  `cantidad_res` int(11) DEFAULT NULL,
+  `costo_res` double DEFAULT NULL,
+  `costo_unidad_res` double DEFAULT NULL,
+  PRIMARY KEY (`id_res`),
+  KEY `codigo_pro` (`codigo_pro`),
+  CONSTRAINT `resurtir_ibfk_1` FOREIGN KEY (`codigo_pro`) REFERENCES `producto` (`codigo_pro`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resurtir`
+--
+
+LOCK TABLES `resurtir` WRITE;
+/*!40000 ALTER TABLE `resurtir` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resurtir` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `usuario_usu` varchar(30) NOT NULL,
+  `password_usu` varchar(50) NOT NULL,
+  `rol_usu` varchar(11) NOT NULL,
+  `status_usu` bit(1) NOT NULL,
+  PRIMARY KEY (`usuario_usu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES ('dos','dos','sabe',''),('uno','uno','sabe','');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `venta`
+--
+
+DROP TABLE IF EXISTS `venta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `venta` (
+  `id_ven` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_ven` date NOT NULL,
+  `total_ven` double NOT NULL,
+  `status_ven` bit(1) NOT NULL,
+  PRIMARY KEY (`id_ven`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `venta`
+--
+
+LOCK TABLES `venta` WRITE;
+/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
+INSERT INTO `venta` VALUES (1,'2019-01-09',0,''),(2,'2019-01-09',0,''),(3,'2019-01-09',0,''),(4,'2019-01-09',0,''),(5,'2019-01-09',0,''),(6,'2019-01-09',0,''),(7,'2019-01-09',192,''),(8,'2019-01-09',0,'\0'),(9,'2019-01-09',74,''),(10,'2019-01-09',0,'\0'),(11,'2019-01-09',36,''),(12,'2019-01-09',0,'\0'),(13,'2019-01-09',0,'\0'),(14,'2019-01-09',20,''),(15,'2019-01-09',0,'\0');
+/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-01-09  4:03:03
